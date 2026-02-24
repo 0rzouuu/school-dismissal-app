@@ -13,22 +13,19 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#00aebc">
     <style>
+        /* ==================== ROOT VARIABLES ==================== */
+        
          :root {
             /* Maarif School Brand Colors */
             --maarif-teal: #00aebc;
             --maarif-teal-light: #00adbb;
-            --maarif-teal-2: #00acba;
-            --maarif-teal-3: #00a9b8;
-            --maarif-teal-4: #00aab9;
             --maarif-navy: #134577;
             --maarif-white: #ffffff;
-            --maarif-black: #00000000;
             /* Primary Colors */
             --primary: var(--maarif-teal);
             --primary-dark: #008c99;
             --secondary: var(--maarif-navy);
             --secondary-dark: #0e3559;
-            --accent: var(--maarif-teal-light);
             /* Status Colors */
             --warning: #f59e0b;
             --danger: #ef4444;
@@ -45,6 +42,7 @@
             --shadow-lg: 0 10px 15px -3px rgba(0, 174, 188, 0.1), 0 4px 6px -2px rgba(0, 174, 188, 0.05);
             --transition: all 0.3s ease;
         }
+        /* ==================== GLOBAL STYLES ==================== */
         
         * {
             margin: 0;
@@ -53,7 +51,7 @@
         }
         
         body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f0fcff 0%, #e6f9fc 100%);
             color: var(--dark);
             line-height: 1.6;
@@ -65,7 +63,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        /* Header with Logo */
+        /* ==================== HEADER ==================== */
         
         .header {
             text-align: center;
@@ -95,11 +93,6 @@
             flex-wrap: wrap;
         }
         
-        .logo-image {
-            display: flex;
-            align-items: center;
-        }
-        
         .logo-image img {
             height: 100px;
             width: auto;
@@ -121,6 +114,7 @@
             gap: 12px;
             justify-content: center;
             margin-top: 8px;
+            flex-wrap: wrap;
         }
         
         .international-badge {
@@ -130,7 +124,6 @@
             border-radius: 30px;
             font-size: 0.9rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -149,7 +142,59 @@
             color: var(--gray-light);
             font-size: 1.2rem;
         }
-        /* Role Selector - NOW WITH 3 BUTTONS */
+        /* ==================== CUTE MESSAGE ==================== */
+        
+        .cute-message {
+            text-align: center;
+            margin: 0 auto 25px auto;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, rgba(0, 174, 188, 0.03), rgba(19, 69, 119, 0.03));
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--maarif-navy);
+            border: 1px dashed var(--maarif-teal);
+            box-shadow: 0 4px 15px rgba(0, 174, 188, 0.08);
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            backdrop-filter: blur(2px);
+            transition: var(--transition);
+            letter-spacing: 0.3px;
+            width: fit-content;
+        }
+        
+        .cute-message:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 174, 188, 0.15);
+        }
+        
+        .cute-message i.fa-quote-left,
+        .cute-message i.fa-quote-right {
+            color: var(--maarif-teal);
+            opacity: 0.4;
+            font-size: 0.9rem;
+            margin: 0 8px;
+        }
+        
+        .cute-message .fa-heart {
+            color: #ff7f7f;
+            margin: 0 3px;
+            filter: drop-shadow(0 2px 3px rgba(255, 107, 139, 0.3));
+            display: inline-block;
+            animation: heartbeat 1.5s ease infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        /* ==================== ROLE SELECTOR ==================== */
         
         .role-selector {
             display: flex;
@@ -216,7 +261,7 @@
             font-size: 0.9rem;
             margin: 0;
         }
-        /* Sections */
+        /* ==================== SECTIONS ==================== */
         
         .section {
             background: white;
@@ -290,12 +335,38 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        /* Search and Filter Bars */
+        /* ==================== SEARCH ==================== */
         
         .search-container {
             position: relative;
             margin-bottom: 15px;
         }
+        
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            font-size: 1rem;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            background: white;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--maarif-teal);
+            box-shadow: 0 0 0 3px rgba(0, 174, 188, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+        /* ==================== FILTERS ==================== */
         
         .filter-container {
             display: flex;
@@ -325,32 +396,7 @@
             color: white;
             border-color: var(--maarif-teal);
         }
-        
-        .search-input {
-            width: 100%;
-            padding: 16px 20px 16px 50px;
-            font-size: 1rem;
-            border: 2px solid var(--gray-light);
-            border-radius: var(--radius);
-            transition: var(--transition);
-            background: white;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: var(--maarif-teal);
-            box-shadow: 0 0 0 3px rgba(0, 174, 188, 0.1);
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gray);
-            font-size: 1.2rem;
-        }
-        /* Lists */
+        /* ==================== LISTS ==================== */
         
         .list {
             list-style: none;
@@ -395,7 +441,6 @@
         .list-item.released {
             border-left: 6px solid var(--success);
             background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-            opacity: 0.9;
         }
         
         .student-info {
@@ -451,7 +496,7 @@
             font-weight: 700;
             margin-left: 10px;
         }
-        /* Buttons */
+        /* ==================== BUTTONS ==================== */
         
         .btn {
             padding: 10px 20px;
@@ -517,7 +562,6 @@
             cursor: not-allowed;
             transform: none !important;
         }
-        /* Undo Button */
         
         .btn-undo {
             background: var(--maarif-navy);
@@ -525,14 +569,13 @@
             min-width: 80px;
             padding: 8px 12px;
             font-size: 0.8rem;
-            font-weight: 600;
-            border: none;
             border-radius: 8px;
-            cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
             box-shadow: 0 2px 4px rgba(19, 69, 119, 0.3);
+            border: none;
+            cursor: pointer;
             transition: var(--transition);
         }
         
@@ -541,87 +584,235 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(19, 69, 119, 0.4);
         }
+        /* ==================== FLOATING IT SUPPORT ==================== */
         
-        .btn-sm {
-            padding: 6px 12px;
-            font-size: 0.8rem;
-            min-width: 100px;
-        }
-        /* Notification Section */
-        
-        .notification-section {
-            text-align: center;
-            margin-top: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, #f0fcff, #e6f9fc);
-            border-radius: var(--radius);
-            border: 2px dashed var(--maarif-teal);
-        }
-        
-        .notification-section h3 {
-            color: var(--maarif-navy);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        .it-support-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--maarif-teal);
+            color: white;
+            padding: 14px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 174, 188, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 999;
+            transition: var(--transition);
+            border: 2px solid white;
+            font-weight: 600;
         }
         
-        .notification-section h3 i {
-            color: var(--maarif-teal);
+        .it-support-floating:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 174, 188, 0.5);
+            background: #008c99;
         }
         
-        .notification-btn {
+        .it-support-popup {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 320px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            animation: slideUp 0.3s ease;
+            border: 1px solid var(--gray-light);
+            overflow: hidden;
+        }
+        
+        .it-support-popup.show {
+            display: block;
+        }
+        
+        .it-support-popup-header {
             background: linear-gradient(135deg, var(--maarif-teal), var(--maarif-navy));
             color: white;
-            padding: 16px 32px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .it-support-popup-header h4 {
+            margin: 0;
             font-size: 1.1rem;
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        .it-support-close {
+            background: none;
             border: none;
-            border-radius: var(--radius);
+            color: white;
+            font-size: 1.8rem;
             cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
+            line-height: 1;
+            opacity: 0.8;
+        }
+        
+        .it-support-popup-body {
+            padding: 20px;
+        }
+        
+        .it-support-contact,
+        .it-support-hours,
+        .it-support-response {
+            display: flex;
             align-items: center;
             gap: 12px;
-            margin-top: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .it-support-contact i,
+        .it-support-hours i,
+        .it-support-response i {
+            width: 20px;
+            color: var(--maarif-teal);
+        }
+        
+        .it-support-contact a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .it-support-contact a:hover {
+            color: var(--maarif-teal);
+        }
+        
+        .it-support-popup-footer {
+            padding: 15px 20px;
+            background: var(--light);
+            border-top: 1px solid var(--gray-light);
+        }
+        
+        .it-support-action {
+            width: 100%;
+            padding: 12px;
+            background: var(--maarif-teal);
+            color: white;
+            border: none;
+            border-radius: 10px;
             font-weight: 600;
-            box-shadow: var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
         }
         
-        .notification-btn:hover {
-            transform: translateY(-3px);
+        .it-support-action:hover {
+            background: #008c99;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 174, 188, 0.3);
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* ==================== MODAL ==================== */
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(19, 69, 119, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
             box-shadow: var(--shadow-lg);
+            animation: modalFadeIn 0.3s ease;
+            border-top: 6px solid var(--maarif-teal);
         }
         
-        .notification-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none !important;
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        /* ==================== FOOTER ==================== */
+        
+        .main-footer {
+            margin-top: 60px;
+            padding: 40px 30px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--maarif-teal);
         }
         
-        .notification-status {
-            margin-top: 15px;
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--maarif-navy);
+            padding: 8px 16px;
+            background: var(--light);
+            border-radius: 40px;
+        }
+        
+        .footer-copyright {
+            text-align: center;
             color: var(--gray);
             font-size: 0.9rem;
+            padding: 20px 0 10px;
+            border-top: 2px solid var(--gray-light);
         }
-        /* Empty States */
         
-        .empty-state {
+        .footer-heart {
             text-align: center;
-            padding: 50px 20px;
-            color: var(--gray);
+            color: var(--maarif-navy);
+            font-size: 0.8rem;
+            margin-top: 15px;
+            opacity: 0.7;
         }
         
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 20px;
+        .footer-heart i {
             color: var(--maarif-teal);
-            opacity: 0.5;
+            animation: heartbeat 1.5s ease infinite;
         }
-        
-        .empty-state h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        /* Toast */
+        /* ==================== TOAST ==================== */
         
         .toast {
             position: fixed;
@@ -651,82 +842,7 @@
                 opacity: 1;
             }
         }
-        
-        .toast.success {
-            border-left-color: var(--success);
-        }
-        
-        .toast.warning {
-            border-left-color: var(--warning);
-        }
-        
-        .toast.error {
-            border-left-color: var(--danger);
-        }
-        
-        .toast.success .toast-icon {
-            color: var(--success);
-        }
-        /* Confirmation Modal */
-        
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(19, 69, 119, 0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: var(--radius);
-            max-width: 500px;
-            width: 90%;
-            box-shadow: var(--shadow-lg);
-            animation: modalFadeIn 0.3s ease;
-            border-top: 6px solid var(--maarif-teal);
-        }
-        
-        .modal-content h3 {
-            color: var(--maarif-navy);
-            margin-bottom: 20px;
-        }
-        
-        .modal-content h3 i {
-            color: var(--maarif-teal);
-        }
-        
-        .student-details {
-            margin: 20px 0;
-            padding: 20px;
-            background: var(--light);
-            border-radius: var(--radius);
-            border: 1px solid var(--gray-light);
-        }
-        
-        .detail-item {
-            margin: 10px 0;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .detail-item strong {
-            color: var(--maarif-navy);
-        }
-        
-        .modal-actions {
-            display: flex;
-            gap: 15px;
-            justify-content: flex-end;
-            margin-top: 25px;
-        }
-        /* PWA Install Prompt */
+        /* ==================== PWA PROMPT ==================== */
         
         .pwa-prompt {
             position: fixed;
@@ -747,293 +863,22 @@
         
         .pwa-prompt.show {
             display: block;
-            animation: slideUp 0.3s ease;
         }
+        /* ==================== EMPTY STATES ==================== */
         
-        .pwa-prompt h4 {
-            color: var(--maarif-navy);
-            margin-bottom: 10px;
-        }
-        
-        .pwa-prompt h4 i {
-            color: var(--maarif-teal);
-        }
-        
-        @keyframes slideUp {
-            from {
-                transform: translate(-50%, 100%);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-50%, 0);
-                opacity: 1;
-            }
-        }
-        /* IT Support Message */
-        
-        .it-support {
-            background: linear-gradient(135deg, #f0fcff, #e6f9fc);
-            border-radius: 12px;
-            border-left: 6px solid var(--maarif-teal);
-            padding: 16px 24px;
-            margin: 20px 0 30px 0;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .it-support:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-2px);
-        }
-        
-        .it-support p {
-            color: var(--maarif-navy);
-            font-size: 1rem;
-            font-weight: 500;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .it-support span {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .it-support i {
-            font-size: 1.2rem;
-            color: var(--maarif-teal);
-        }
-        
-        .it-support a {
-            background: var(--maarif-teal);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            box-shadow: 0 4px 6px rgba(0, 174, 188, 0.2);
-        }
-        
-        .it-support a:hover {
-            background: #008c99;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 12px rgba(0, 174, 188, 0.3);
-        }
-        
-        .it-support a i {
-            color: white;
-            font-size: 1rem;
-        }
-        /* Footer */
-        
-        .main-footer {
-            margin-top: 60px;
-            padding: 40px 30px 20px;
-            background: white;
-            border-radius: 20px 20px 12px 12px;
-            box-shadow: var(--shadow);
-            border-top: 4px solid var(--maarif-teal);
-        }
-        
-        .footer-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        
-        .footer-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--maarif-navy);
-            font-size: 1rem;
-            font-weight: 500;
-            padding: 8px 16px;
-            background: var(--light);
-            border-radius: 40px;
-            transition: var(--transition);
-        }
-        
-        .footer-item:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-            background: white;
-        }
-        
-        .footer-item i {
-            color: var(--maarif-teal);
-            font-size: 1.2rem;
-        }
-        
-        .footer-copyright {
+        .empty-state {
             text-align: center;
+            padding: 50px 20px;
             color: var(--gray);
-            font-size: 0.9rem;
-            padding: 20px 0 10px;
-            border-top: 2px solid var(--gray-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
         }
         
-        .footer-copyright i {
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 20px;
             color: var(--maarif-teal);
+            opacity: 0.5;
         }
-        
-        .footer-heart {
-            text-align: center;
-            color: var(--maarif-navy);
-            font-size: 0.8rem;
-            margin-top: 15px;
-            letter-spacing: 0.5px;
-            opacity: 0.7;
-        }
-        
-        .footer-heart i {
-            color: var(--maarif-teal);
-            margin: 0 4px;
-            animation: heartbeat 1.5s ease infinite;
-        }
-        
-        @keyframes heartbeat {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-        
-        .footer-links {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .footer-links a:hover {
-            color: var(--maarif-teal);
-            transform: translateY(-2px);
-        }
-        
-        .footer-links a i {
-            font-size: 0.8rem;
-        }
-        /* Cute Message */
-        
-        .cute-message {
-            text-align: center;
-            margin: 0 auto 25px auto;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, rgba(0, 174, 188, 0.03), rgba(19, 69, 119, 0.03));
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--maarif-navy);
-            border: 1px dashed var(--maarif-teal);
-            box-shadow: 0 4px 15px rgba(0, 174, 188, 0.08);
-            max-width: 550px;
-            margin-left: auto;
-            margin-right: auto;
-            backdrop-filter: blur(2px);
-            transition: var(--transition);
-            letter-spacing: 0.3px;
-            width: fit-content;
-        }
-        
-        .cute-message:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(0, 174, 188, 0.15);
-        }
-        
-        .cute-message i.fa-quote-left,
-        .cute-message i.fa-quote-right {
-            color: var(--maarif-teal);
-            opacity: 0.4;
-            font-size: 0.9rem;
-            margin: 0 8px;
-        }
-        
-        .cute-message .fa-heart {
-            color: #ff7f7f;
-            margin: 0 3px;
-            filter: drop-shadow(0 2px 3px rgba(255, 107, 139, 0.3));
-            display: inline-block;
-        }
-        /* Responsive */
-        
-        @media (max-width: 768px) {
-            .role-selector {
-                flex-direction: column !important;
-                align-items: center !important;
-                gap: 15px !important;
-            }
-            .role-btn {
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 15px 20px !important;
-            }
-            .section-header {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: 15px !important;
-            }
-            .stats {
-                width: 100% !important;
-                justify-content: space-between !important;
-            }
-            .list-item {
-                flex-direction: column !important;
-                align-items: stretch !important;
-                gap: 15px !important;
-            }
-            .btn {
-                width: 100% !important;
-                min-width: unset !important;
-            }
-            .footer-content {
-                gap: 15px !important;
-                flex-direction: column !important;
-            }
-            .it-support p {
-                flex-direction: column !important;
-                text-align: center !important;
-            }
-            .cute-message {
-                font-size: 0.95rem !important;
-                padding: 10px 15px !important;
-            }
-        }
-        /* Loading Animation */
+        /* ==================== LOADING ==================== */
         
         .loading {
             display: inline-block;
@@ -1053,85 +898,162 @@
                 transform: rotate(360deg);
             }
         }
-        /* ==================== IMPROVED MOBILE VERSION ==================== */
+        /* ==================== MOBILE RESPONSIVE ==================== */
         
         @media (max-width: 768px) {
-            /* Make role selector buttons side by side but smaller */
+            /* Header */
+            .logo-image img {
+                height: 80px;
+            }
+            .logo-text h2 {
+                font-size: 1.3rem;
+            }
+            .school-badges {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .separator {
+                display: none;
+            }
+            /* Role Buttons */
             .role-selector {
+                flex-direction: row;
+                gap: 8px;
+                margin: 20px auto;
+            }
+            .role-btn {
+                padding: 12px 5px;
+                gap: 5px;
+            }
+            .role-icon {
+                font-size: 1.5rem;
+                margin-bottom: 2px;
+            }
+            .role-btn h3 {
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+            .role-btn p {
+                display: none;
+            }
+            /* Cute Message */
+            .cute-message {
+                font-size: 0.9rem;
+                padding: 10px 15px;
+                max-width: 95%;
+            }
+            .cute-message i.fa-quote-left,
+            .cute-message i.fa-quote-right {
+                font-size: 0.8rem;
+                margin: 0 5px;
+            }
+            /* Sections */
+            .section {
+                padding: 20px;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .stat-item {
+                flex: 1;
+                padding: 8px 5px;
+            }
+            .stat-value {
+                font-size: 1.2rem;
+            }
+            .stat-label {
+                font-size: 0.65rem;
+            }
+            /* Teacher Filters - Horizontal Scroll */
+            #teacher-filters {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 10px;
+                scrollbar-width: none;
+            }
+            #teacher-filters::-webkit-scrollbar {
+                display: none;
+            }
+            #teacher-filters .filter-btn {
+                flex: 0 0 auto;
+                white-space: nowrap;
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+            /* Admin Panel - Fix buttons */
+            #admin-section .list-item {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                padding: 15px !important;
+                gap: 12px !important;
+            }
+            #admin-section .student-info {
+                margin-bottom: 5px !important;
+            }
+            #admin-section .student-name {
+                font-size: 1.1rem !important;
+            }
+            #admin-section .student-class {
+                font-size: 0.7rem !important;
+                padding: 3px 10px !important;
+            }
+            /* Button container for admin panel */
+            #admin-section .list-item>div:last-child {
                 display: flex !important;
                 flex-direction: row !important;
                 gap: 8px !important;
-                padding: 0 !important;
-                margin: 15px auto !important;
-                max-width: 100% !important;
+                width: 100% !important;
             }
-            .role-btn {
-                padding: 12px 5px !important;
+            /* Parent Here button */
+            #admin-section .btn-primary,
+            #admin-section .btn-secondary {
+                flex: 2 !important;
                 min-width: 0 !important;
+                padding: 12px 8px !important;
+                font-size: 0.85rem !important;
+                white-space: nowrap !important;
+            }
+            /* UNDO button */
+            #admin-section .btn-undo,
+            #admin-section button[style*="background: #ef4444"] {
                 flex: 1 !important;
-                gap: 5px !important;
-            }
-            .role-icon {
-                font-size: 1.5rem !important;
-                margin-bottom: 2px !important;
-            }
-            .role-btn h3 {
+                min-width: 0 !important;
+                padding: 12px 5px !important;
                 font-size: 0.8rem !important;
                 white-space: nowrap !important;
-            }
-            .role-btn p {
-                display: none !important;
-                /* Hide descriptions on mobile */
-            }
-            /* Teacher Panel - Pending list */
-            #teacher-section .section-header {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: 10px !important;
-            }
-            #teacher-section .stats {
-                width: 100% !important;
-                justify-content: space-between !important;
-            }
-            #teacher-section .stat-item {
-                flex: 1 !important;
-                min-width: 0 !important;
-                padding: 8px 5px !important;
-            }
-            #teacher-section .stat-value {
-                font-size: 1.2rem !important;
-            }
-            #teacher-section .stat-label {
-                font-size: 0.65rem !important;
-            }
-            /* Filter buttons scrollable horizontally */
-            #teacher-filters {
+                background: #ef4444 !important;
+                color: white !important;
+                border: none !important;
+                border-radius: 8px !important;
                 display: flex !important;
-                flex-wrap: nowrap !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch !important;
-                gap: 8px !important;
-                padding-bottom: 10px !important;
-                margin-bottom: 15px !important;
-                scrollbar-width: none !important;
-                /* Hide scrollbar Firefox */
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 4px !important;
+                box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3) !important;
             }
-            #teacher-filters::-webkit-scrollbar {
-                display: none !important;
-                /* Hide scrollbar Chrome/Safari */
+            /* Year headers in admin panel */
+            #admin-section .list-item[style*="border-left"] {
+                padding: 10px 15px !important;
+                margin-top: 20px !important;
+                margin-bottom: 8px !important;
             }
-            #teacher-filters .filter-btn {
-                flex: 0 0 auto !important;
-                white-space: nowrap !important;
-                font-size: 0.75rem !important;
-                padding: 6px 12px !important;
+            /* Search bar */
+            #admin-section .search-input {
+                padding: 12px 15px 12px 45px !important;
+                font-size: 0.9rem !important;
             }
-            /* Pending list items */
+            /* Teacher Panel lists */
             #pending-list .list-item {
                 flex-direction: column !important;
                 align-items: stretch !important;
                 padding: 15px !important;
-                margin-bottom: 10px !important;
             }
             #pending-list .student-info {
                 margin-bottom: 12px !important;
@@ -1141,113 +1063,164 @@
             }
             #pending-list .student-class {
                 font-size: 0.7rem !important;
-                padding: 3px 10px !important;
             }
             #pending-list .wait-time {
                 font-size: 0.65rem !important;
-                padding: 2px 8px !important;
             }
             #pending-list .arrival-time {
                 font-size: 0.7rem !important;
             }
-            /* Release button - full width on mobile */
             #pending-list .release-btn {
                 width: 100% !important;
                 margin-top: 5px !important;
                 padding: 12px !important;
-                font-size: 0.9rem !important;
             }
-            /* Released Students Panel */
-            #released-section .section-header {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: 10px !important;
-            }
-            #released-section .stats {
-                width: 100% !important;
-            }
-            #released-section .stat-item {
-                width: 100% !important;
-            }
-            /* Released list items */
+            /* Released Panel */
             #released-list .list-item {
                 padding: 12px 15px !important;
-                margin-bottom: 8px !important;
             }
             #released-list .student-name {
                 font-size: 1rem !important;
             }
             #released-list .student-class {
                 font-size: 0.7rem !important;
-                padding: 2px 8px !important;
             }
             #released-list .released-time {
                 font-size: 0.65rem !important;
-                padding: 2px 8px !important;
-                margin-left: 5px !important;
             }
-            #released-list .arrival-time {
-                font-size: 0.65rem !important;
-                margin-top: 5px !important;
+            /* IT Support */
+            .it-support-floating {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
             }
-            /* Empty states */
+            .it-support-popup {
+                bottom: 90px;
+                right: 20px;
+                width: 290px;
+            }
+            /* Empty States */
             .empty-state {
-                padding: 30px 15px !important;
+                padding: 30px 15px;
             }
             .empty-state i {
-                font-size: 2rem !important;
+                font-size: 2rem;
             }
             .empty-state h3 {
-                font-size: 1.1rem !important;
+                font-size: 1.1rem;
             }
             .empty-state p {
-                font-size: 0.8rem !important;
+                font-size: 0.8rem;
+            }
+            /* Footer */
+            .footer-content {
+                gap: 15px;
+                flex-direction: column;
+            }
+            .footer-item {
+                width: 100%;
+                justify-content: center;
             }
         }
-        /* Even smaller phones */
+        /* Small Phones */
         
         @media (max-width: 480px) {
             .role-btn h3 {
-                font-size: 0.7rem !important;
+                font-size: 0.7rem;
             }
             .role-icon {
-                font-size: 1.3rem !important;
+                font-size: 1.3rem;
             }
-            #teacher-section .stat-value {
-                font-size: 1rem !important;
+            .cute-message {
+                font-size: 0.8rem;
+                padding: 8px 12px;
             }
-            #teacher-section .stat-label {
-                font-size: 0.6rem !important;
+            .cute-message i.fa-quote-left,
+            .cute-message i.fa-quote-right {
+                display: none;
             }
-            #pending-list .student-name {
-                font-size: 1rem !important;
+            /* Admin Panel buttons - even smaller */
+            #admin-section .btn-primary,
+            #admin-section .btn-secondary {
+                font-size: 0.75rem !important;
+                padding: 10px 5px !important;
             }
-            #pending-list .student-class {
-                font-size: 0.65rem !important;
+            #admin-section .btn-undo,
+            #admin-section button[style*="background: #ef4444"] {
+                font-size: 0.7rem !important;
+                padding: 10px 3px !important;
             }
-            #pending-list .wait-time {
-                font-size: 0.6rem !important;
-            }
-            #pending-list .release-btn {
-                padding: 10px !important;
+            #admin-section .btn-undo i,
+            #admin-section button[style*="background: #ef4444"] i {
                 font-size: 0.8rem !important;
             }
-            #released-list .student-name {
-                font-size: 0.95rem !important;
+            #admin-section .student-name {
+                font-size: 1rem !important;
+            }
+            #teacher-section .stat-value {
+                font-size: 1rem;
+            }
+            #teacher-section .stat-label {
+                font-size: 0.6rem;
+            }
+            #pending-list .student-name {
+                font-size: 1rem;
+            }
+            #pending-list .student-class {
+                font-size: 0.65rem;
+            }
+            #pending-list .wait-time {
+                font-size: 0.6rem;
+            }
+            #pending-list .release-btn {
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+            .it-support-floating {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 15px;
+            }
+            .it-support-floating span {
+                display: none;
+            }
+            .it-support-floating i {
+                font-size: 1.2rem;
+                margin: 0;
+            }
+            .it-support-popup {
+                bottom: 80px;
+                right: 15px;
+                width: 260px;
             }
         }
-        /* Fix for very small phones */
+        /* Very Small Phones */
         
         @media (max-width: 360px) {
             .role-btn h3 {
-                font-size: 0.65rem !important;
+                font-size: 0.65rem;
             }
             .role-icon {
-                font-size: 1.2rem !important;
+                font-size: 1.2rem;
             }
             #teacher-filters .filter-btn {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+            #admin-section .btn-primary,
+            #admin-section .btn-secondary {
                 font-size: 0.7rem !important;
-                padding: 4px 10px !important;
+                padding: 8px 3px !important;
+            }
+            #admin-section .btn-undo,
+            #admin-section button[style*="background: #ef4444"] {
+                font-size: 0.65rem !important;
+                padding: 8px 2px !important;
+            }
+            #admin-section .btn-undo i,
+            #admin-section button[style*="background: #ef4444"] i {
+                font-size: 0.7rem !important;
             }
         }
     </style>
@@ -1255,7 +1228,7 @@
 
 <body>
     <div class="container">
-        <!-- Header with Maarif Logo -->
+        <!-- Header -->
         <header class="header">
             <div class="logo">
                 <div class="logo-image">
@@ -1276,56 +1249,40 @@
             </div>
         </header>
 
-        <!-- Role Selector - THREE BUTTONS NOW -->
+        <!-- Role Selector -->
         <div class="role-selector">
             <div class="role-btn admin active" onclick="showSection('admin')">
-                <div class="role-icon">
-                    <i class="fas fa-user-tie"></i>
-                </div>
+                <div class="role-icon"><i class="fas fa-user-tie"></i></div>
                 <div>
-                    <h3>Admin Panel</h3>
+                    <h3>Admin</h3>
                     <p>Mark parent arrivals</p>
                 </div>
             </div>
-
             <div class="role-btn teacher" onclick="showSection('teacher')">
-                <div class="role-icon">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                </div>
+                <div class="role-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                 <div>
-                    <h3>Teacher Panel</h3>
+                    <h3>Teacher</h3>
                     <p>Release students</p>
                 </div>
             </div>
-
             <div class="role-btn released" onclick="showSection('released')">
-                <div class="role-icon">
-                    <i class="fas fa-history"></i>
-                </div>
+                <div class="role-icon"><i class="fas fa-history"></i></div>
                 <div>
-                    <h3>Released Students</h3>
-                    <p>View dismissal history</p>
+                    <h3>Released</h3>
+                    <p>View history</p>
                 </div>
             </div>
         </div>
 
-        <!-- Cute Motivational Message -->
+        <!-- Cute Message -->
         <div class="cute-message">
             <i class="fas fa-quote-left"></i> Designed <span>with</span>
             <i class="fas fa-heart"></i>
             <span>for</span>
-            <span style="font-weight: 500; background: linear-gradient(135deg, var(--maarif-teal), var(--maarif-navy)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">smoother dismissals</span>
+            <span style="font-weight: 500; background: linear-gradient(135deg, var(--maarif-teal), var(--maarif-navy)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                smoother dismissals
+            </span>
             <i class="fas fa-quote-right"></i>
-        </div>
-
-        <!-- IT Support Message -->
-        <div class="it-support">
-            <p>
-                <span><i class="fas fa-headset"></i> Need assistance? Contact IT Support</span>
-                <a href="mailto:it@tn.maarifschools.org">
-                    <i class="fas fa-envelope"></i> it@tn.maarifschools.org
-                </a>
-            </p>
         </div>
 
         <!-- Admin Section -->
@@ -1335,7 +1292,7 @@
                 <div class="stats">
                     <div class="stat-item">
                         <div class="stat-value" id="total-students">0</div>
-                        <div class="stat-label">Total Students</div>
+                        <div class="stat-label">Total</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value" id="pending-count">0</div>
@@ -1343,17 +1300,14 @@
                     </div>
                 </div>
             </div>
-
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" id="student-search" class="search-input" placeholder="🔍 Search by student name, class, or year..." autocomplete="off">
+                <input type="text" id="student-search" class="search-input" placeholder="Search by name, class, or year...">
             </div>
-
             <ul id="student-list" class="list">
-                <li class="empty-state">
-                    <i class="fas fa-users"></i>
+                <li class="empty-state"><i class="fas fa-users"></i>
                     <h3>Loading Students...</h3>
-                    <p>Please wait while we load the student database</p>
+                    <p>Please wait</p>
                 </li>
             </ul>
         </section>
@@ -1369,36 +1323,28 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Year Filter Buttons -->
-            <div class="filter-container" id="teacher-filters">
-                <!-- Will be populated by JavaScript -->
-            </div>
-
+            <div class="filter-container" id="teacher-filters"></div>
             <ul id="pending-list" class="list">
-                <li class="empty-state">
-                    <i class="fas fa-check-circle"></i>
+                <li class="empty-state"><i class="fas fa-check-circle"></i>
                     <h3>No Pending Pickups</h3>
                     <p>When parents arrive, they'll appear here</p>
                 </li>
             </ul>
         </section>
 
-        <!-- Released Students Section (NEW - SEPARATE PANEL) -->
+        <!-- Released Section -->
         <section id="released-section" class="section">
             <div class="section-header">
                 <h2><i class="fas fa-history"></i> Released Students</h2>
                 <div class="stats">
                     <div class="stat-item">
                         <div class="stat-value" id="released-today">0</div>
-                        <div class="stat-label">Released Today</div>
+                        <div class="stat-label">Released</div>
                     </div>
                 </div>
             </div>
-
             <ul id="released-list" class="list">
-                <li class="empty-state">
-                    <i class="fas fa-history"></i>
+                <li class="empty-state"><i class="fas fa-history"></i>
                     <h3>No Released Students</h3>
                     <p>Students released today will appear here</p>
                 </li>
@@ -1407,16 +1353,47 @@
 
         <!-- PWA Install Prompt -->
         <div class="pwa-prompt" id="pwa-prompt">
-            <h4><i class="fas fa-download"></i> Install Maarif Dismissal</h4>
-            <p>Install for quick access and offline use</p>
+            <h4><i class="fas fa-download"></i> Install App</h4>
+            <p>Install for quick access</p>
             <div style="display: flex; gap: 10px; margin-top: 15px;">
-                <button class="btn btn-primary" id="install-btn">
-                    <i class="fas fa-download"></i> Install
-                </button>
-                <button class="btn" id="cancel-install" style="background: var(--gray-light); color: var(--dark);">
-                    Not Now
-                </button>
+                <button class="btn btn-primary" id="install-btn"><i class="fas fa-download"></i> Install</button>
+                <button class="btn" id="cancel-install" style="background: var(--gray-light);">Not Now</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Floating IT Support -->
+    <div class="it-support-floating" onclick="toggleSupportPopup()">
+        <i class="fas fa-headset"></i>
+        <span>Need Help?</span>
+    </div>
+
+    <!-- IT Support Popup -->
+    <div class="it-support-popup" id="supportPopup">
+        <div class="it-support-popup-header">
+            <i class="fas fa-life-ring"></i>
+            <h4>IT Support</h4>
+            <button class="it-support-close" onclick="toggleSupportPopup()">×</button>
+        </div>
+        <div class="it-support-popup-body">
+            <p>Need assistance with the dismissal system?</p>
+            <div class="it-support-contact">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:it@tn.maarifschools.org">it@tn.maarifschools.org</a>
+            </div>
+            <div class="it-support-hours">
+                <i class="fas fa-clock"></i>
+                <span>8:00 AM - 4:00 PM</span>
+            </div>
+            <div class="it-support-response">
+                <i class="fas fa-bolt"></i>
+                <span>Response within 15 min</span>
+            </div>
+        </div>
+        <div class="it-support-popup-footer">
+            <button onclick="location.href='mailto:it@tn.maarifschools.org'" class="it-support-action">
+                <i class="fas fa-paper-plane"></i> Send Email
+            </button>
         </div>
     </div>
 
@@ -1425,28 +1402,14 @@
         <div class="modal-content">
             <h3><i class="fas fa-exclamation-triangle"></i> Confirm Release</h3>
             <div class="student-details">
-                <div class="detail-item">
-                    <strong>Student:</strong>
-                    <span id="confirm-student-name"></span>
-                </div>
-                <div class="detail-item">
-                    <strong>Class:</strong>
-                    <span id="confirm-student-class"></span>
-                </div>
-                <div class="detail-item">
-                    <strong>Waiting Time:</strong>
-                    <span id="confirm-wait-time"></span>
-                </div>
-                <div class="detail-item">
-                    <strong>Arrived At:</strong>
-                    <span id="confirm-arrival-time"></span>
-                </div>
+                <div class="detail-item"><strong>Student:</strong> <span id="confirm-student-name"></span></div>
+                <div class="detail-item"><strong>Class:</strong> <span id="confirm-student-class"></span></div>
+                <div class="detail-item"><strong>Waiting:</strong> <span id="confirm-wait-time"></span></div>
+                <div class="detail-item"><strong>Arrived:</strong> <span id="confirm-arrival-time"></span></div>
             </div>
             <div class="modal-actions">
                 <button id="confirm-cancel" class="btn btn-secondary">Cancel</button>
-                <button id="confirm-release" class="btn btn-danger">
-                    <i class="fas fa-user-check"></i> Yes, Release Student
-                </button>
+                <button id="confirm-release" class="btn btn-danger"><i class="fas fa-user-check"></i> Release</button>
             </div>
         </div>
     </div>
@@ -1454,30 +1417,13 @@
     <!-- Footer -->
     <footer class="main-footer">
         <div class="footer-content">
-            <div class="footer-item">
-                <i class="fas fa-school"></i>
-                <span>Maarif International School of Tunisia</span>
-            </div>
-            <div class="footer-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>LAC - CAMPUS</span>
-            </div>
-            <div class="footer-item">
-                <i class="fas fa-code-branch"></i>
-                <span>v3.0.0</span>
-            </div>
+            <div class="footer-item"><i class="fas fa-school"></i><span>Maarif Tunisia</span></div>
+            <div class="footer-item"><i class="fas fa-map-marker-alt"></i><span>LAC - CAMPUS</span></div>
+            <div class="footer-item"><i class="fas fa-code-branch"></i><span>v3.0</span></div>
         </div>
-
-        <div class="footer-links">
-            <a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a>
-            <a href="#"><i class="fas fa-chevron-right"></i> Terms of Use</a>
-            <a href="#"><i class="fas fa-chevron-right"></i> Contact</a>
-        </div>
-
         <div class="footer-copyright">
-            <i class="far fa-copyright"></i> 2024 Maarif International Schools. All rights reserved.
+            <i class="far fa-copyright"></i> 2024 Maarif International Schools
         </div>
-
         <div class="footer-heart">
             Designed with <i class="fas fa-heart"></i> for smoother dismissals
         </div>
@@ -1488,110 +1434,80 @@
 
     <script type="module" src="./app.js"></script>
     <script>
-        // Section switching - NOW WITH 3 SECTIONS
+        // Section switching
         window.showSection = function(section) {
-            document.querySelectorAll('.role-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Find and activate the correct button
-            if (section === 'admin') {
-                document.querySelector('.role-btn.admin').classList.add('active');
-            } else if (section === 'teacher') {
-                document.querySelector('.role-btn.teacher').classList.add('active');
-            } else if (section === 'released') {
-                document.querySelector('.role-btn.released').classList.add('active');
-            }
-
-            document.querySelectorAll('.section').forEach(sec => {
-                sec.classList.remove('active');
-            });
+            document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.role-btn.${section}`).classList.add('active');
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(`${section}-section`).classList.add('active');
-
-            document.title = section === 'admin' ? 'Admin - Maarif Dismissal' :
-                section === 'teacher' ? 'Teacher - Maarif Dismissal' :
-                'Released - Maarif Dismissal';
-
+            document.title = section === 'admin' ? 'Admin - Maarif' :
+                section === 'teacher' ? 'Teacher - Maarif' : 'Released - Maarif';
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         };
 
-        window.showSection('admin');
+        // IT Support Popup
+        window.toggleSupportPopup = function() {
+            document.getElementById('supportPopup').classList.toggle('show');
+        }
 
-        // PWA Install Prompt
+        // Close popup when clicking outside
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('supportPopup');
+            const button = document.querySelector('.it-support-floating');
+            if (popup.classList.contains('show') &&
+                !popup.contains(event.target) &&
+                !button.contains(event.target)) {
+                popup.classList.remove('show');
+            }
+        });
+
+        // Close with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.getElementById('supportPopup').classList.remove('show');
+            }
+        });
+
+        // PWA Install
         let deferredPrompt;
-        const pwaPrompt = document.getElementById('pwa-prompt');
-
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            setTimeout(() => {
-                if (deferredPrompt) {
-                    pwaPrompt.classList.add('show');
-                }
-            }, 5000);
+            setTimeout(() => deferredPrompt && document.getElementById('pwa-prompt').classList.add('show'), 5000);
         });
 
         document.getElementById('install-btn').addEventListener('click', async() => {
             if (!deferredPrompt) return;
             deferredPrompt.prompt();
-            const {
-                outcome
-            } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                console.log('PWA installed');
-            }
+            await deferredPrompt.userChoice;
             deferredPrompt = null;
-            pwaPrompt.classList.remove('show');
+            document.getElementById('pwa-prompt').classList.remove('show');
         });
 
         document.getElementById('cancel-install').addEventListener('click', () => {
-            pwaPrompt.classList.remove('show');
+            document.getElementById('pwa-prompt').classList.remove('show');
         });
 
-        // Toast function
-        window.showToast = function(message, type = 'info', duration = 5000) {
-            const icons = {
-                success: 'fas fa-check-circle',
-                warning: 'fas fa-exclamation-triangle',
-                error: 'fas fa-times-circle',
-                info: 'fas fa-info-circle'
-            };
-
+        // Toast
+        window.showToast = function(message, type = 'info') {
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
-            toast.innerHTML = `
-                <i class="${icons[type] || icons.info} toast-icon"></i>
+            toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : type === 'error' ? 'times-circle' : 'info-circle'} toast-icon"></i>
                 <div class="toast-content">${message}</div>
-                <button class="toast-close" onclick="this.parentElement.remove()">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-
+                <button class="toast-close" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>`;
             document.getElementById('toast-container').appendChild(toast);
-            setTimeout(() => {
-                if (toast.parentElement) {
-                    toast.remove();
-                }
-            }, duration);
+            setTimeout(() => toast.remove(), 5000);
         };
 
         // Service Worker
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./firebase-messaging-sw.js')
-                    .then(registration => {
-                        console.log('Service Worker registered:', registration);
-                    })
-                    .catch(error => {
-                        console.log('Service Worker registration failed:', error);
-                    });
-            });
+            navigator.serviceWorker.register('./firebase-messaging-sw.js').catch(console.log);
         }
 
-        // Update date and time
+        // DateTime
         function updateDateTime() {
             const now = new Date();
             const options = {
@@ -1602,27 +1518,15 @@
                 hour: '2-digit',
                 minute: '2-digit'
             };
-
-            let dateTimeElement = document.getElementById('current-time');
-            if (!dateTimeElement) {
-                dateTimeElement = document.createElement('div');
-                dateTimeElement.id = 'current-time';
-                dateTimeElement.style.cssText = `
-                    color: var(--gray);
-                    font-size: 0.85rem;
-                    margin-top: 10px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 8px;
-                `;
-                document.querySelector('.logo-text').appendChild(dateTimeElement);
-            }
-
-            const dateStr = now.toLocaleDateString('en-US', options);
-            dateTimeElement.innerHTML = `<i class="far fa-calendar-alt" style="color: var(--maarif-teal);"></i> ${dateStr}`;
+            let el = document.getElementById('current-time') || (() => {
+                const e = document.createElement('div');
+                e.id = 'current-time';
+                e.style.cssText = 'color: var(--gray); font-size: 0.85rem; margin-top: 10px; display: flex; justify-content: center; gap: 8px;';
+                document.querySelector('.logo-text').appendChild(e);
+                return e;
+            })();
+            el.innerHTML = `<i class="far fa-calendar-alt" style="color: var(--maarif-teal);"></i> ${now.toLocaleDateString('en-US', options)}`;
         }
-
         updateDateTime();
         setInterval(updateDateTime, 60000);
     </script>
