@@ -1053,6 +1053,203 @@
                 transform: rotate(360deg);
             }
         }
+        /* ==================== IMPROVED MOBILE VERSION ==================== */
+        
+        @media (max-width: 768px) {
+            /* Make role selector buttons side by side but smaller */
+            .role-selector {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 8px !important;
+                padding: 0 !important;
+                margin: 15px auto !important;
+                max-width: 100% !important;
+            }
+            .role-btn {
+                padding: 12px 5px !important;
+                min-width: 0 !important;
+                flex: 1 !important;
+                gap: 5px !important;
+            }
+            .role-icon {
+                font-size: 1.5rem !important;
+                margin-bottom: 2px !important;
+            }
+            .role-btn h3 {
+                font-size: 0.8rem !important;
+                white-space: nowrap !important;
+            }
+            .role-btn p {
+                display: none !important;
+                /* Hide descriptions on mobile */
+            }
+            /* Teacher Panel - Pending list */
+            #teacher-section .section-header {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 10px !important;
+            }
+            #teacher-section .stats {
+                width: 100% !important;
+                justify-content: space-between !important;
+            }
+            #teacher-section .stat-item {
+                flex: 1 !important;
+                min-width: 0 !important;
+                padding: 8px 5px !important;
+            }
+            #teacher-section .stat-value {
+                font-size: 1.2rem !important;
+            }
+            #teacher-section .stat-label {
+                font-size: 0.65rem !important;
+            }
+            /* Filter buttons scrollable horizontally */
+            #teacher-filters {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                gap: 8px !important;
+                padding-bottom: 10px !important;
+                margin-bottom: 15px !important;
+                scrollbar-width: none !important;
+                /* Hide scrollbar Firefox */
+            }
+            #teacher-filters::-webkit-scrollbar {
+                display: none !important;
+                /* Hide scrollbar Chrome/Safari */
+            }
+            #teacher-filters .filter-btn {
+                flex: 0 0 auto !important;
+                white-space: nowrap !important;
+                font-size: 0.75rem !important;
+                padding: 6px 12px !important;
+            }
+            /* Pending list items */
+            #pending-list .list-item {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                padding: 15px !important;
+                margin-bottom: 10px !important;
+            }
+            #pending-list .student-info {
+                margin-bottom: 12px !important;
+            }
+            #pending-list .student-name {
+                font-size: 1.1rem !important;
+            }
+            #pending-list .student-class {
+                font-size: 0.7rem !important;
+                padding: 3px 10px !important;
+            }
+            #pending-list .wait-time {
+                font-size: 0.65rem !important;
+                padding: 2px 8px !important;
+            }
+            #pending-list .arrival-time {
+                font-size: 0.7rem !important;
+            }
+            /* Release button - full width on mobile */
+            #pending-list .release-btn {
+                width: 100% !important;
+                margin-top: 5px !important;
+                padding: 12px !important;
+                font-size: 0.9rem !important;
+            }
+            /* Released Students Panel */
+            #released-section .section-header {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 10px !important;
+            }
+            #released-section .stats {
+                width: 100% !important;
+            }
+            #released-section .stat-item {
+                width: 100% !important;
+            }
+            /* Released list items */
+            #released-list .list-item {
+                padding: 12px 15px !important;
+                margin-bottom: 8px !important;
+            }
+            #released-list .student-name {
+                font-size: 1rem !important;
+            }
+            #released-list .student-class {
+                font-size: 0.7rem !important;
+                padding: 2px 8px !important;
+            }
+            #released-list .released-time {
+                font-size: 0.65rem !important;
+                padding: 2px 8px !important;
+                margin-left: 5px !important;
+            }
+            #released-list .arrival-time {
+                font-size: 0.65rem !important;
+                margin-top: 5px !important;
+            }
+            /* Empty states */
+            .empty-state {
+                padding: 30px 15px !important;
+            }
+            .empty-state i {
+                font-size: 2rem !important;
+            }
+            .empty-state h3 {
+                font-size: 1.1rem !important;
+            }
+            .empty-state p {
+                font-size: 0.8rem !important;
+            }
+        }
+        /* Even smaller phones */
+        
+        @media (max-width: 480px) {
+            .role-btn h3 {
+                font-size: 0.7rem !important;
+            }
+            .role-icon {
+                font-size: 1.3rem !important;
+            }
+            #teacher-section .stat-value {
+                font-size: 1rem !important;
+            }
+            #teacher-section .stat-label {
+                font-size: 0.6rem !important;
+            }
+            #pending-list .student-name {
+                font-size: 1rem !important;
+            }
+            #pending-list .student-class {
+                font-size: 0.65rem !important;
+            }
+            #pending-list .wait-time {
+                font-size: 0.6rem !important;
+            }
+            #pending-list .release-btn {
+                padding: 10px !important;
+                font-size: 0.8rem !important;
+            }
+            #released-list .student-name {
+                font-size: 0.95rem !important;
+            }
+        }
+        /* Fix for very small phones */
+        
+        @media (max-width: 360px) {
+            .role-btn h3 {
+                font-size: 0.65rem !important;
+            }
+            .role-icon {
+                font-size: 1.2rem !important;
+            }
+            #teacher-filters .filter-btn {
+                font-size: 0.7rem !important;
+                padding: 4px 10px !important;
+            }
+        }
     </style>
 </head>
 
