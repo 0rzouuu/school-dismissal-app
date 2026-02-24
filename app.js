@@ -1,4 +1,4 @@
-// app.js - WITH PER-STUDENT UNDO BUTTON (NEXT TO WAITING BUTTON)
+// app.js - COMPLETE WITH CORRECT RELEASE LOGIC (Student stays hidden after release)
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import { getDatabase, ref, push, set, onValue, remove, get, query, orderByChild, limitToLast } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js';
 import { getMessaging, getToken, onMessage, isSupported } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging.js';
@@ -40,6 +40,9 @@ let studentLoadPromise = null;
 // Track which students have disabled buttons (already marked)
 let disabledStudentButtons = new Set();
 
+// Track which students have been released (stay hidden)
+let releasedStudentsToday = new Set();
+
 // Check if messaging is supported
 (async() => {
     if (await isSupported()) {
@@ -73,7 +76,8 @@ async function checkAndResetForNewDay() {
             await resetSystemForNewDay();
             await set(lastResetRef, { date: today, timestamp: Date.now() });
             disabledStudentButtons.clear();
-            showToast('🔄 System reset for new day - All pickups cleared', 'success');
+            releasedStudentsToday.clear(); // Clear released students for new day
+            showToast('🔄 System reset for new day - All students available', 'success');
         }
     } catch (error) {
         console.error('Error checking daily reset:', error);
@@ -435,6 +439,62 @@ function renderFilteredPendingList() {
     });
 }
 
+// ==================== RELEASED LIST ====================
+
+function setupReleasedPickupsListener() {
+    const releasedRef = ref(db, 'releasedPickups');
+
+    onValue(releasedRef, (snapshot) => {
+        const releasedListElement = document.getElementById('released-list');
+        if (!releasedListElement) return;
+
+        const data = snapshot.val();
+        const releasedPickups = data ? Object.entries(data) : [];
+
+        if (releasedPickups.length === 0) {
+            releasedListElement.innerHTML = `
+                <li class="empty-state">
+                    <i class="fas fa-history"></i>
+                    <h3>No Released Students</h3>
+                    <p>Students released today will appear here</p>
+                </li>
+            `;
+            return;
+        }
+
+        // Sort by release time (most recent first)
+        releasedPickups.sort((a, b) => b[1].releasedAt - a[1].releasedAt);
+        releasedListElement.innerHTML = '';
+
+        releasedPickups.forEach(([key, pickup]) => {
+            const releaseTime = pickup.releasedTime || 
+                new Date(pickup.releasedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            const li = document.createElement('li');
+            li.className = 'list-item released';
+            li.innerHTML = `
+                <div class="student-info">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+                        <div>
+                            <div class="student-name">${pickup.name}</div>
+                            <div style="margin-top: 5px;">
+                                <span class="student-class released-class">${pickup.class}</span>
+                                <span class="released-time">Released</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="arrival-time">
+                        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                        Released: ${releaseTime}
+                    </div>
+                </div>
+            `;
+
+            releasedListElement.appendChild(li);
+        });
+    });
+}
+
 // ==================== UNDO FUNCTION ====================
 
 async function undoMarkParent(studentName, buttonElement) {
@@ -472,7 +532,7 @@ async function undoMarkParent(studentName, buttonElement) {
             buttonElement.style.minWidth = '160px';
         }
 
-        // Remove from disabled set
+        // Remove from disabled set so student reappears in Admin Panel
         disabledStudentButtons.delete(studentName);
         
         // Show success message
@@ -576,7 +636,7 @@ async function markParentArrived(student, buttonElement) {
     }
 }
 
-// ==================== VISUALLY IMPROVED STUDENT RENDERING WITH UNDO BUTTON ====================
+// ==================== STUDENT RENDERING WITH UNDO BUTTON ====================
 
 function renderStudentList(filter = '') {
     const studentListElement = document.getElementById('student-list');
@@ -589,10 +649,12 @@ function renderStudentList(filter = '') {
 
     studentListElement.innerHTML = '';
 
-    let filteredStudents = students;
+    // Filter students - hide those who have been released today
+    let filteredStudents = students.filter(student => !releasedStudentsToday.has(student.name));
+    
     if (filter) {
         const searchTerm = filter.toLowerCase();
-        filteredStudents = students.filter(student =>
+        filteredStudents = filteredStudents.filter(student =>
             student.name.toLowerCase().includes(searchTerm) ||
             student.class.toLowerCase().includes(searchTerm) ||
             student.year.toLowerCase().includes(searchTerm)
@@ -603,8 +665,8 @@ function renderStudentList(filter = '') {
         studentListElement.innerHTML = `
             <li class="empty-state">
                 <i class="fas fa-users"></i>
-                <h3>No students found</h3>
-                <p>Try a different search term</p>
+                <h3>No students available</h3>
+                <p>${releasedStudentsToday.size > 0 ? 'All students have been released today' : 'Try a different search term'}</p>
             </li>
         `;
         return;
@@ -700,61 +762,60 @@ function renderStudentList(filter = '') {
                 disabledStudentButtons.add(student.name);
             }
 
-           // Create the buttons container
-const buttonsContainer = document.createElement('div');
-buttonsContainer.style.display = 'flex';
-buttonsContainer.style.gap = '8px';
-buttonsContainer.style.alignItems = 'center';
+            // Create the buttons container
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.style.display = 'flex';
+            buttonsContainer.style.gap = '8px';
+            buttonsContainer.style.alignItems = 'center';
 
-// Main action button (Parent Here or Waiting)
-const actionButton = document.createElement('button');
-actionButton.className = `btn ${isPending || isButtonDisabled ? 'btn-secondary' : 'btn-primary'}`;
-actionButton.setAttribute('data-student-id', student.id);
-actionButton.setAttribute('data-student-name', student.name);
-if (isPending || isButtonDisabled) {
-    actionButton.disabled = true;
-    actionButton.style.opacity = '0.7';
-    actionButton.style.cursor = 'not-allowed';
-    actionButton.style.background = 'var(--gray)';
-    actionButton.style.minWidth = '160px';
-    actionButton.innerHTML = '<i class="fas fa-clock"></i> Waiting for Release';
-} else {
-    actionButton.style.minWidth = '160px';
-    actionButton.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
-    actionButton.innerHTML = '<i class="fas fa-user-check"></i> Parent Here';
-}
+            // Main action button (Parent Here or Waiting)
+            const actionButton = document.createElement('button');
+            actionButton.className = `btn ${isPending || isButtonDisabled ? 'btn-secondary' : 'btn-primary'}`;
+            actionButton.setAttribute('data-student-id', student.id);
+            actionButton.setAttribute('data-student-name', student.name);
+            if (isPending || isButtonDisabled) {
+                actionButton.disabled = true;
+                actionButton.style.opacity = '0.7';
+                actionButton.style.cursor = 'not-allowed';
+                actionButton.style.background = 'var(--gray)';
+                actionButton.style.minWidth = '160px';
+                actionButton.innerHTML = '<i class="fas fa-clock"></i> Waiting for Release';
+            } else {
+                actionButton.style.minWidth = '160px';
+                actionButton.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
+                actionButton.innerHTML = '<i class="fas fa-user-check"></i> Parent Here';
+            }
 
-// UNDO button - ONLY show if student is pending - NOW ON THE LEFT!
-if (isPending) {
-    const undoButton = document.createElement('button');
-    undoButton.className = 'btn';
-    undoButton.style.background = '#ef4444';
-    undoButton.style.color = 'white';
-    undoButton.style.minWidth = '80px';
-    undoButton.style.padding = '8px 12px';
-    undoButton.style.fontSize = '0.8rem';
-    undoButton.style.fontWeight = '600';
-    undoButton.style.border = 'none';
-    undoButton.style.borderRadius = '8px';
-    undoButton.style.cursor = 'pointer';
-    undoButton.style.display = 'flex';
-    undoButton.style.alignItems = 'center';
-    undoButton.style.gap = '6px';
-    undoButton.style.boxShadow = '0 2px 4px rgba(239, 68, 68, 0.3)';
-    undoButton.innerHTML = '<i class="fas fa-undo-alt"></i> UNDO';
-    
-    undoButton.addEventListener('click', async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        await undoMarkParent(student.name, actionButton);
-    });
-    
-    // 👈🏽 UNDO ON THE LEFT!
-    buttonsContainer.appendChild(undoButton);
-    buttonsContainer.appendChild(actionButton);
-} else {
-    buttonsContainer.appendChild(actionButton);
-}
+            // UNDO button - ONLY show if student is pending
+            if (isPending) {
+                const undoButton = document.createElement('button');
+                undoButton.className = 'btn';
+                undoButton.style.background = '#ef4444';
+                undoButton.style.color = 'white';
+                undoButton.style.minWidth = '80px';
+                undoButton.style.padding = '8px 12px';
+                undoButton.style.fontSize = '0.8rem';
+                undoButton.style.fontWeight = '600';
+                undoButton.style.border = 'none';
+                undoButton.style.borderRadius = '8px';
+                undoButton.style.cursor = 'pointer';
+                undoButton.style.display = 'flex';
+                undoButton.style.alignItems = 'center';
+                undoButton.style.gap = '6px';
+                undoButton.style.boxShadow = '0 2px 4px rgba(239, 68, 68, 0.3)';
+                undoButton.innerHTML = '<i class="fas fa-undo-alt"></i> UNDO';
+                
+                undoButton.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    await undoMarkParent(student.name, actionButton);
+                });
+                
+                buttonsContainer.appendChild(undoButton);
+                buttonsContainer.appendChild(actionButton);
+            } else {
+                buttonsContainer.appendChild(actionButton);
+            }
 
             // Student info div
             const studentInfoDiv = document.createElement('div');
@@ -931,10 +992,16 @@ async function releaseStudent(key, studentName) {
             await set(releasedRef, pickupData);
             await remove(pickupRef);
 
+            // Add to released students set (so they stay hidden from Admin Panel)
+            releasedStudentsToday.add(studentName);
+            
+            // Remove from disabled set so button resets
             disabledStudentButtons.delete(studentName);
             
-            renderStudentList(document.getElementById('student-search')?.value || '');
-
+            // Force re-render of Admin Panel to hide the released student
+            const searchInput = document.getElementById('student-search');
+            renderStudentList(searchInput?.value || '');
+            
             showToast(`✅ ${studentName} released safely!`, 'success');
             updateReleasedCount();
 
@@ -1127,13 +1194,14 @@ window.forceResetForNewDay = async function() {
 // ==================== INITIALIZATION ====================
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded, initializing app with PER-STUDENT UNDO...');
+    console.log('DOM loaded, initializing app with CORRECT RELEASE LOGIC...');
     
     checkAndResetForNewDay().catch(console.error);
     loadStudentsFromCSV().catch(console.error);
     
     setTimeout(() => {
         setupPendingPickupsListener();
+        setupReleasedPickupsListener();
         setupConfirmationDialog();
         setupSearch();
         
@@ -1143,7 +1211,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(cleanupClickCooldown, 60000);
         setInterval(checkAndResetForNewDay, 60 * 60 * 1000);
         
-        console.log('App initialized - PER-STUDENT UNDO ready!');
+        console.log('App initialized - Student stays HIDDEN after release!');
     }, 100);
 });
 
@@ -1165,4 +1233,4 @@ window.clearStudentCache = () => {
     loadStudentsFromCSV();
 };
 
-console.log('✅ App loaded - Each waiting student has its own UNDO button!');
+console.log('✅ App loaded - Students stay hidden in Admin Panel after release!');
