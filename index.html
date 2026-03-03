@@ -1156,6 +1156,345 @@
                 width: 260px;
             }
         }
+        /* ==================== TEACHER CLASS SELECTOR ==================== */
+        
+        .teacher-class-wrapper {
+            background: linear-gradient(135deg, rgba(0, 174, 188, 0.05), rgba(19, 69, 119, 0.05));
+            border-radius: var(--radius);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border: 1px dashed var(--maarif-teal);
+        }
+        
+        .teacher-class-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .teacher-class-container label {
+            font-weight: 600;
+            color: var(--maarif-navy);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .teacher-class-container label i {
+            color: var(--maarif-teal);
+            font-size: 1.2rem;
+        }
+        
+        .teacher-class-select {
+            padding: 10px 20px;
+            border: 2px solid var(--maarif-teal);
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--maarif-navy);
+            background: white;
+            cursor: pointer;
+            min-width: 150px;
+            transition: var(--transition);
+        }
+        
+        .teacher-class-select:hover {
+            border-color: var(--maarif-navy);
+            box-shadow: var(--shadow);
+        }
+        
+        .teacher-class-select:focus {
+            outline: none;
+            border-color: var(--maarif-navy);
+            box-shadow: 0 0 0 3px rgba(0, 174, 188, 0.2);
+        }
+        /* Mobile responsive */
+        
+        @media (max-width: 768px) {
+            .teacher-class-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .teacher-class-select {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .teacher-class-wrapper {
+                padding: 12px 15px;
+            }
+            .teacher-class-container label {
+                font-size: 0.9rem;
+            }
+            .teacher-class-select {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        /* ==================== YEAR PENDING BADGES ==================== */
+        
+        .year-pending-badge {
+            background: var(--warning);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 10px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        /* Teacher Filter Styles */
+        
+        .teacher-filter-wrapper {
+            background: linear-gradient(135deg, rgba(0, 174, 188, 0.05), rgba(19, 69, 119, 0.05));
+            border-radius: var(--radius);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border: 1px dashed var(--maarif-teal);
+        }
+        
+        .teacher-filter-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: var(--maarif-navy);
+            font-weight: 600;
+        }
+        
+        .teacher-filter-header i {
+            color: var(--maarif-teal);
+        }
+        
+        .teacher-filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .teacher-filter-buttons {
+                gap: 8px;
+            }
+            .teacher-filter-wrapper {
+                padding: 12px 15px;
+            }
+        }
+        /* ==================== TEACHER FILTER WITH COUNTS ==================== */
+        
+        .teacher-filter-wrapper {
+            background: linear-gradient(135deg, rgba(0, 174, 188, 0.05), rgba(19, 69, 119, 0.05));
+            border-radius: var(--radius);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border: 1px dashed var(--maarif-teal);
+        }
+        
+        .teacher-filter-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: var(--maarif-navy);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .teacher-filter-header i {
+            color: var(--maarif-teal);
+            font-size: 1.1rem;
+        }
+        
+        .teacher-filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid var(--gray-light);
+            border-radius: 30px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--maarif-teal);
+            color: var(--maarif-teal);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .filter-btn.active {
+            background: var(--maarif-teal);
+            color: white;
+            border-color: var(--maarif-teal);
+        }
+        
+        .filter-count {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .filter-btn.active .filter-count {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .filter-count.zero-count {
+            opacity: 0.5;
+        }
+        /* Mobile responsive */
+        
+        @media (max-width: 768px) {
+            .teacher-filter-wrapper {
+                padding: 12px 15px;
+            }
+            .teacher-filter-buttons {
+                gap: 8px;
+            }
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            .filter-count {
+                padding: 2px 6px;
+                font-size: 0.7rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .teacher-filter-header {
+                font-size: 0.85rem;
+            }
+            .filter-btn {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+        }
+        /* ==================== DROPDOWN FILTER (CLEAN & COMPACT) ==================== */
+        
+        .filter-dropdown-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, rgba(0, 174, 188, 0.03), rgba(19, 69, 119, 0.03));
+            padding: 12px 18px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            border: 1px dashed var(--maarif-teal);
+            flex-wrap: wrap;
+        }
+        
+        .filter-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            color: var(--maarif-navy);
+            font-size: 0.95rem;
+        }
+        
+        .filter-label i {
+            color: var(--maarif-teal);
+            font-size: 1rem;
+        }
+        
+        .filter-dropdown {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            border: 2px solid var(--gray-light);
+            border-radius: 30px;
+            font-size: 0.95rem;
+            color: var(--dark);
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300aebc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+        
+        .filter-dropdown:hover {
+            border-color: var(--maarif-teal);
+            box-shadow: var(--shadow);
+        }
+        
+        .filter-dropdown:focus {
+            outline: none;
+            border-color: var(--maarif-teal);
+            box-shadow: 0 0 0 3px rgba(0, 174, 188, 0.2);
+        }
+        
+        .filter-dropdown option {
+            padding: 10px;
+        }
+        /* Mobile responsive */
+        
+        @media (max-width: 768px) {
+            .filter-dropdown-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 12px;
+            }
+            .filter-dropdown {
+                width: 100%;
+                min-width: auto;
+                padding: 10px 14px;
+                padding-right: 35px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .filter-dropdown-wrapper {
+                padding: 10px;
+            }
+            .filter-label {
+                font-size: 0.85rem;
+            }
+            .filter-dropdown {
+                padding: 8px 12px;
+                padding-right: 32px;
+                font-size: 0.85rem;
+                background-size: 14px;
+                background-position: right 10px center;
+            }
+        }
     </style>
 </head>
 
@@ -1256,7 +1595,10 @@
                     </div>
                 </div>
             </div>
-            <div class="filter-container" id="teacher-filters"></div>
+
+            <!-- Teacher Filter Dropdown (CLEAN & COMPACT) -->
+            <div id="teacher-filter-container"></div>
+
             <ul id="pending-list" class="list">
                 <li class="empty-state"><i class="fas fa-check-circle"></i>
                     <h3>No Pending Pickups</h3>
