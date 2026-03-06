@@ -57,6 +57,7 @@ const STUDENTS = [
     { name: "LARA KAABI", class: "Year 1", year: "Year 1" },
     { name: "MIRAY DEMIR", class: "Year 1", year: "Year 1" },
     { name: "OMER MUSAB YAVUZTURK", class: "Year 1", year: "Year 1" },
+    { name: "Hasan Efe Meşe", class: "Year 1", year: "Year 1" },
     { name: "AWES AYARI", class: "Year 2", year: "Year 2" },
     { name: "FARES ALASWAD", class: "Year 2", year: "Year 2" },
     { name: "FIRDAOUS TURAN", class: "Year 2", year: "Year 2" },

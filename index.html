@@ -1495,6 +1495,242 @@
                 background-position: right 10px center;
             }
         }
+        /* ==================== CHATBOT STYLES ==================== */
+        
+        .chatbot-button {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00aebc, #134577);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 174, 188, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 2px solid white;
+        }
+        
+        .chatbot-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 174, 188, 0.5);
+        }
+        
+        .chat-notification {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+        
+        .chat-window {
+            position: fixed;
+            bottom: 180px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1001;
+            border: 1px solid #e2e8f0;
+            animation: slideUp 0.3s ease;
+        }
+        
+        .chat-window.show {
+            display: flex;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #00aebc, #134577);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+        
+        .chat-header-title i {
+            font-size: 1.2rem;
+        }
+        
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .chat-close:hover {
+            opacity: 1;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .chat-message {
+            display: flex;
+            flex-direction: column;
+            max-width: 85%;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+        }
+        
+        .message-content {
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .bot-message .message-content {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-bottom-left-radius: 4px;
+            color: #1e293b;
+        }
+        
+        .user-message .message-content {
+            background: linear-gradient(135deg, #00aebc, #134577);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .chat-option {
+            background: #f0f9ff;
+            border: 2px solid #00aebc;
+            border-radius: 30px;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 0.95rem;
+            color: #134577;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: calc(100% - 20px);
+            text-align: left;
+        }
+        
+        .chat-option:hover {
+            background: #00aebc;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .chat-input-area {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: #00aebc;
+            box-shadow: 0 0 0 3px rgba(0, 174, 188, 0.1);
+        }
+        
+        .chat-send {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #00aebc, #134577);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chat-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 174, 188, 0.4);
+        }
+        /* Mobile responsive */
+        
+        @media (max-width: 768px) {
+            .chat-window {
+                width: 90%;
+                right: 5%;
+                bottom: 120px;
+                height: 60vh;
+            }
+            .chatbot-button {
+                bottom: 80px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -1688,6 +1924,41 @@
             </div>
         </div>
     </div>
+
+    <!-- Chatbot Button
+    <div class="chatbot-button" onclick="toggleChat()">
+        <i class="fas fa-comment-dots"></i>
+        <span class="chat-notification">1</span>
+    </div>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div class="chat-header-title">
+                <i class="fas fa-robot"></i>
+                <span>Maarif Training Assistant</span>
+            </div>
+            <button class="chat-close" onclick="toggleChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot-message">
+                <div class="message-content">
+                    👋 Hi! I'm here to help you learn the dismissal system.
+                    <br><br> Are you a:
+                    <br><br>
+                    <button class="chat-option" onclick="handleUserRole('teacher')">👩‍🏫 Teacher</button>
+                    <button class="chat-option" onclick="handleUserRole('admin')">👨‍💼 Admin</button>
+                    <button class="chat-option" onclick="handleUserRole('new')">🆕 New User</button>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." onkeypress="handleKeyPress(event)">
+            <button class="chat-send" onclick="sendMessage()">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+        </div>
+    </div> -->
 
     <!-- Footer -->
     <footer class="main-footer">
